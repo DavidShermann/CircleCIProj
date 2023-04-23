@@ -47,9 +47,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: test with checkov's
+          name: test with checkov
           command: |
-            pip install checkov
+            pip3 install checkov
             checkov -d .
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
