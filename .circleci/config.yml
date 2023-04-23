@@ -39,6 +39,14 @@ jobs:
       - run:
           name: Run tests
           command: docker run --rm -d weather python3 -m unittest WeatherAppTest.py
+      - discord/status:
+          fail_only: true
+          webhook: https://discord.com/api/webhooks/1041448092475588710/WTNhSyF_4-6T1FdlU1EKKkEi0Ops6OdROkv5zCSpKpsANBe3m3uAUgkW14gonjj_OSjI 
+          failure_message: "You Suck"
+      - discord/status:
+          success_only: true
+          webhook: https://discord.com/api/webhooks/1041448092475588710/WTNhSyF_4-6T1FdlU1EKKkEi0Ops6OdROkv5zCSpKpsANBe3m3uAUgkW14gonjj_OSjI
+          success_message: "You Rock"    
   push-to-gitlab-registry:
     docker:
       - image: docker:17.05.0-ce-git
