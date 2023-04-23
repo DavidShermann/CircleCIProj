@@ -84,4 +84,5 @@ workflows:
             - run:
                 name: Update version Number
                 command: |
-                  export IMAGE_VER=$($IMAGE_VER+1)
+                  export IMAGE_VER=$(($IMAGE_VER+1))
+                  echo $IMAGE_VER
