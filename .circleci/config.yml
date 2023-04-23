@@ -40,15 +40,17 @@ jobs:
               echo "$GITLAB_REGISTRY_PASSWORD" | docker login --password-stdin -u "$GITLAB_REGISTRY_USER"  registry.gitlab.com
               docker push registry.gitlab.com/devops2695516/circleciproj/weatherapp:<< pipeline.number >>
               docker push registry.gitlab.com/devops2695516/circleciproj/weatherapp:latest
-      - discord/status:
-          fail_only: true
-          webhook: https://discord.com/api/webhooks/1041448092475588710/WTNhSyF_4-6T1FdlU1EKKkEi0Ops6OdROkv5zCSpKpsANBe3m3uAUgkW14gonjj_OSjI 
-          failure_message: "You Suck"
-      - discord/status:
-          success_only: true
-          webhook: https://discord.com/api/webhooks/1041448092475588710/WTNhSyF_4-6T1FdlU1EKKkEi0Ops6OdROkv5zCSpKpsANBe3m3uAUgkW14gonjj_OSjI
-          success_message: "Push Image to gitlab is great success"    
-   
+  test-terraform-code:
+    docker:
+      - image: cimg/base:2021.04
+    working_directory: ~/TerraF
+    steps:
+      - checkout
+      - run:
+          name: test with checkov's gun
+          command: |
+            pip install checkov's
+            checkov -d TerraF/
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.

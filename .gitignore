@@ -1,0 +1,11 @@
+*
+*.tf
+!Dockerfile
+!README.md
+!requirements.txt
+!*.py
+!.yml
+!.gitignore
+!*.sh
+!templates/
+!.html
