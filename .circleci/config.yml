@@ -53,17 +53,18 @@ jobs:
               echo "$GITLAB_REGISTRY_PASSWORD" | docker login -u "$GITLAB_REGISTRY_USER" --password-stdin registry.gitlab.com
               docker push registry.gitlab.com/devops2695516/CircleCIProj/WeatherApp:${IMAGE_VERSION}
               docker push registry.gitlab.com/devops2695516/CircleCIProj/WeatherApp:latest
-    post-steps:
-      - run:
-          name: Update version number
-          command: |
-            echo $((${IMAGE_VERSION//./} + 1)) | sed 's/.\{1\}/&./g;s/\.$//' # Increment the version number
-            echo "IMAGE_VERSION=$((${IMAGE_VERSION//./} + 1)) | sed 's/.\{1\}/&./g;s/\.$//'" >> $BASH_ENV
-
+    
 
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-      - push-to-gitlab-registry      
+      - push-to-gitlab-registry:
+          post-steps:
+            - run:
+                name: Update version number
+                command: |
+                  echo $((${IMAGE_VERSION//./} + 1)) | sed 's/.\{1\}/&./g;s/\.$//' # Increment the version number
+                  echo "IMAGE_VERSION=$((${IMAGE_VERSION//./} + 1)) | sed 's/.\{1\}/&./g;s/\.$//'" >> $BASH_ENV
+     
