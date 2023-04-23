@@ -33,10 +33,13 @@ jobs:
           pkg-manager: pip
       - run:
           name: Build Weather app
-          command: python3 WeatherApp.py    
+          command: docker build . -t weather
+      - run:
+          name: Run Weather app
+          command: docker run -d -p 5000:5000 --name weather weather        
       - run:
           name: Run tests
-          command: python3 unittest -m WeatherAppTest.py
+          command: docker exec weather python3 -m unittest WeatherAppTest.py
   push-to-gitlab-registry:
     docker:
       - image: docker:stable-git
@@ -49,7 +52,7 @@ jobs:
           name: Build and tag Docker image
           command: |
               docker build -t registry.gitlab.com/devops2695516/CircleCIProj/weatherapp:${IMAGE_VERSION} .
-              docker tag registry.gitlab.com/devops2695516/CircleCIProj/weatherapp:${IMAGE_VERSION} registry.gitlab.com/<your-group>/<your-project>/<your-image-name>:latest
+              docker tag registry.gitlab.com/devops2695516/CircleCIProj/weatherapp:${IMAGE_VERSION} registry.gitlab.com/devops2695516/CircleCIProj/weatherapp:latest
       - run:
           name: Push Docker image to GitLab registry
           command: |
