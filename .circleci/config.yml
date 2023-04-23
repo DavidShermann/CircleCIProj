@@ -59,3 +59,6 @@ workflows:
       - push-to-gitlab-registry:
           requires:
             - build-and-test
+      - test-terraform-code:
+          requires:
+            - push-to-gitlab-registry
