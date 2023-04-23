@@ -33,13 +33,13 @@ jobs:
           pkg-manager: pip
       - run:
           name: Build Weather app
-          command: docker build . -t weather
+          command: sudo docker build . -t weather
       - run:
           name: Run Weather app
-          command: docker run -d -p 5000:5000 --name weather weather        
+          command: sudo docker run -d -p 5000:5000 --name weather weather        
       - run:
           name: Run tests
-          command: docker exec weather python3 -m unittest WeatherAppTest.py
+          command: sudo docker exec weather python3 -m unittest WeatherAppTest.py
   push-to-gitlab-registry:
     docker:
       - image: docker:stable-git
