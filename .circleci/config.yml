@@ -29,6 +29,8 @@ jobs:
     # CircleCI will report the results back to your VCS provider.
     steps:
       - checkout
+      - setup_remote_docker
+
       # - python/install-packages:
       #     pkg-manager: pip
       - run:
