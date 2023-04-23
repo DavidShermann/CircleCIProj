@@ -48,7 +48,7 @@ jobs:
     docker:
       - image: cimg/base:2021.04
     environment:
-      IMAGE_VERSION: ${IMAGE_VER}  
+      IMAGE_VERSION: $IMAGE_VER  
     steps:
       - checkout
       - setup_remote_docker
@@ -81,5 +81,5 @@ workflows:
           post-steps:
             - run:
                 name: Update version number
-                command: ${IMAGE_VER}=$((IMAGE_VER+1))
+                command: $IMAGE_VER=$((IMAGE_VER+1))
                    
