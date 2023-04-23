@@ -55,7 +55,7 @@ jobs:
       - run:
           name: Push Docker image to GitLab registry
           command: |
-              echo "$GITLAB_REGISTRY_PASSWORD" | docker login -u "$GITLAB_REGISTRY_USER" --password-stdin registry.gitlab.com
+              echo "$GITLAB_REGISTRY_PASSWORD" | docker login --password-stdin -u "$GITLAB_REGISTRY_USER"  registry.gitlab.com
               docker push registry.gitlab.com/devops2695516/circleciproj/weatherapp:${IMAGE_VERSION}
               docker push registry.gitlab.com/devops2695516/circleciproj/weatherapp:latest
       - discord/status:
