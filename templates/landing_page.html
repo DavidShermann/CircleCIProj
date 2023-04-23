@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang='en' xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="utf-8" />
+  <title>Weather Report</title>
+</head>
+<body style="background-image:
+ url(https://img.freepik.com/free-vector/gorgeous-clouds-background-with-blue-sky-design_1017-25501.jpg);
+background-size:1250px 600px;">
+<center>
+     <h1>Weather Report</h1>
+<form method="post" action="/weather">
+    <div class="content">
+        {% for message in get_flashed_messages() %}
+            <div class="alert">{{ message }}</div>
+        {% endfor %}
+        {% block content %} {% endblock %}
+    </div><br>
+      <label>Enter a valid city/country name</label><br><br>
+      <textarea name="text_box" style="resize: none;"></textarea><br><br>
+       <button type="submit">Submit</button>
+</form>
+
+</center>
+</body>
+
+</html>
