@@ -73,11 +73,11 @@ workflows:
                 command: |
                   echo $((${IMAGE_VERSION//./} + 1)) | sed 's/.\{1\}/&./g;s/\.$//' # Increment the version number
                   echo "IMAGE_VERSION=$((${IMAGE_VERSION//./} + 1)) | sed 's/.\{1\}/&./g;s/\.$//'" >> $BASH_ENV
-            - discord/status:
-                fail_only: true
-                webhook: https://discord.com/api/webhooks/1041448092475588710/WTNhSyF_4-6T1FdlU1EKKkEi0Ops6OdROkv5zCSpKpsANBe3m3uAUgkW14gonjj_OSjI
-                message: "You Suck"
-            - discord/status:
-                success_only: true
-                webhook: https://discord.com/api/webhooks/1041448092475588710/WTNhSyF_4-6T1FdlU1EKKkEi0Ops6OdROkv5zCSpKpsANBe3m3uAUgkW14gonjj_OSjI
-                message: "You Rock"    
+      - discord/status:
+          fail_only: true
+          webhook: https://discord.com/api/webhooks/1041448092475588710/WTNhSyF_4-6T1FdlU1EKKkEi0Ops6OdROkv5zCSpKpsANBe3m3uAUgkW14gonjj_OSjI
+          message: "You Suck"
+      - discord/status:
+          success_only: true
+          webhook: https://discord.com/api/webhooks/1041448092475588710/WTNhSyF_4-6T1FdlU1EKKkEi0Ops6OdROkv5zCSpKpsANBe3m3uAUgkW14gonjj_OSjI
+          message: "You Rock"    
