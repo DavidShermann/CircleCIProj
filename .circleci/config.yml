@@ -9,7 +9,7 @@ orbs:
   # Orb commands and jobs help you with common scripting around a language/tool
   # so you dont have to copy and paste it everywhere.
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
-  discord: antonioned/discord@0.1.0
+  discord: teka23/discord@0.1.0
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -60,7 +60,7 @@ jobs:
               docker push registry.gitlab.com/devops2695516/circleciproj/weatherapp:latest
       - discord/status:
           fail_only: true
-          webhook: https://discord.com/api/webhooks/1041448092475588710/WTNhSyF_4-6T1FdlU1EKKkEi0Ops6OdROkv5zCSpKpsANBe3m3uAUgkW14gonjj_OSjI
+          webhook: https://discord.com/api/webhooks/1041448092475588710/WTNhSyF_4-6T1FdlU1EKKkEi0Ops6OdROkv5zCSpKpsANBe3m3uAUgkW14gonjj_OSjI 
           failure_message: "You Suck"
       - discord/status:
           success_only: true
@@ -72,11 +72,11 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-      - push-to-gitlab-registry:
-          post-steps:
-            - run:
-                name: Update version number
-                command: |
-                  echo $((${IMAGE_VERSION//./} + 1)) | sed 's/.\{1\}/&./g;s/\.$//' # Increment the version number
-                  echo "IMAGE_VERSION=$((${IMAGE_VERSION//./} + 1)) | sed 's/.\{1\}/&./g;s/\.$//'" >> $BASH_ENV
+      - push-to-gitlab-registry
+          # post-steps:
+          #   - run:
+          #       name: Update version number
+          #       command: |
+          #         echo $((${IMAGE_VERSION//./} + 1)) | sed 's/.\{1\}/&./g;s/\.$//' # Increment the version number
+          #         echo "IMAGE_VERSION=$((${IMAGE_VERSION//./} + 1)) | sed 's/.\{1\}/&./g;s/\.$//'" >> $BASH_ENV
      
