@@ -41,7 +41,7 @@ jobs:
           command: docker run --rm -d weather python3 -m unittest WeatherAppTest.py
       - run:
           name: install utils
-          command: sudo apt-get update && sudo apt-get install curl -y    
+          command: apt-get update && apt-get install curl -y    
       - discord/status:
           fail_only: true
           webhook: https://discord.com/api/webhooks/1041448092475588710/WTNhSyF_4-6T1FdlU1EKKkEi0Ops6OdROkv5zCSpKpsANBe3m3uAUgkW14gonjj_OSjI 
