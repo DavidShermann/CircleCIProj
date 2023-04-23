@@ -42,7 +42,7 @@ jobs:
               docker push registry.gitlab.com/devops2695516/circleciproj/weatherapp:latest
   test-terraform-code:
     docker:
-      - image: cimg/base:2021.04
+      - image: python:3.10-slim
     working_directory: ~/TerraF
     steps:
       - checkout
