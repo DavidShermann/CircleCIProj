@@ -47,7 +47,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: test with checkov's gun
+          name: test with checkov's
           command: |
             pip install checkov
             checkov -d .
