@@ -55,13 +55,13 @@ jobs:
       - run:
           name: Build and tag Docker image
           command: |
-              docker build . -t registry.gitlab.com/devops2695516/circleciproj/weatherapp:${IMAGE_VER}
-              docker tag registry.gitlab.com/devops2695516/circleciproj/weatherapp:${IMAGE_VER} registry.gitlab.com/devops2695516/circleciproj/weatherapp:latest
+              docker build . -t registry.gitlab.com/devops2695516/circleciproj/weatherapp:${CIRCLE_BUILD_NUM}
+              docker tag registry.gitlab.com/devops2695516/circleciproj/weatherapp:${CIRCLE_BUILD_NUM} registry.gitlab.com/devops2695516/circleciproj/weatherapp:latest
       - run:
           name: Push Docker image to GitLab registry
           command: |
               echo "$GITLAB_REGISTRY_PASSWORD" | docker login --password-stdin -u "$GITLAB_REGISTRY_USER"  registry.gitlab.com
-              docker push registry.gitlab.com/devops2695516/circleciproj/weatherapp:${IMAGE_VER}
+              docker push registry.gitlab.com/devops2695516/circleciproj/weatherapp:${CIRCLE_BUILD_NUM}
               docker push registry.gitlab.com/devops2695516/circleciproj/weatherapp:latest
       - discord/status:
           fail_only: true
@@ -80,9 +80,3 @@ workflows:
       - push-to-gitlab-registry:
           requires:
             - build-and-test
-          post-steps:
-            - run:
-                name: Update version Number
-                command: |
-                  export IMAGE_VER=$((IMAGE_VER+1))
-                  echo $IMAGE_VER
