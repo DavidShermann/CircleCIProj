@@ -81,5 +81,6 @@ workflows:
           post-steps:
             - run:
                 name: Update version number
-                command: $IMAGE_VER=$((IMAGE_VER+1))
-                   
+                command: |
+                  echo $((${IMAGE_VERSION//./} + 1)) | sed 's/.\{1\}/&./g;s/\.$//' # Increment the version number
+                  echo "IMAGE_VERSION=$((${IMAGE_VERSION//./} + 1)) | sed 's/.\{1\}/&./g;s/\.$//'" >> $BASH_ENV # Update the environment variable  
