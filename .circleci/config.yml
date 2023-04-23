@@ -21,7 +21,7 @@ jobs:
     # The executor is the environment in which the steps below will be executed - below will use a python 3.10.2 container
     # Change the version below to your required version of python
     docker:
-      image: ubuntu:latest
+      image: docker:17.05.0-ce-git
     # Checkout the code as the first step. This is a dedicated CircleCI step.
     # The python orb's install-packages step will install the dependencies from a Pipfile via Pipenv by default.
     # Here we're making sure we use just use the system-wide pip. By default it uses the project root's requirements.txt.
@@ -33,13 +33,13 @@ jobs:
           pkg-manager: pip
       - run:
           name: Build Weather app
-          command: sudo docker build . -t weather
+          command: docker build . -t weather
       - run:
           name: Run Weather app
-          command: sudo docker run -d -p 5000:5000 --name weather weather        
+          command: docker run -d -p 5000:5000 --name weather weather        
       - run:
           name: Run tests
-          command: sudo docker exec weather python3 -m unittest WeatherAppTest.py
+          command: docker exec weather python3 -m unittest WeatherAppTest.py
   push-to-gitlab-registry:
     docker:
       - image: docker:stable-git
