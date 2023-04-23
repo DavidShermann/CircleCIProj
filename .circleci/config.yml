@@ -35,10 +35,10 @@ jobs:
           command: docker build . -t weather
       - run:
           name: Run Weather app
-          command: docker run -d -p 5000:5000 --name weather weather        
+          command: docker run --rm -d -p 5000:5000 --name weather weather        
       - run:
           name: Run tests
-          command: docker exec weather python3 WeatherAppTest.py
+          command: docker run --rm -d weather python3 -m unittest WeatherAppTest.py
   push-to-gitlab-registry:
     docker:
       - image: docker:stable-git
