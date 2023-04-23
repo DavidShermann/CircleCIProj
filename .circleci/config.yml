@@ -32,13 +32,13 @@ jobs:
       - run:
           name: Build and tag Docker image
           command: |
-              docker build . -t registry.gitlab.com/devops2695516/circleciproj/weatherapp:${pipeline.number}
-              docker tag registry.gitlab.com/devops2695516/circleciproj/weatherapp:${pipeline.number} registry.gitlab.com/devops2695516/circleciproj/weatherapp:latest
+              docker build . -t registry.gitlab.com/devops2695516/circleciproj/weatherapp:<< pipeline.number >>
+              docker tag registry.gitlab.com/devops2695516/circleciproj/weatherapp:<< pipeline.number >> registry.gitlab.com/devops2695516/circleciproj/weatherapp:latest
       - run:
           name: Push Docker image to GitLab registry
           command: |
               echo "$GITLAB_REGISTRY_PASSWORD" | docker login --password-stdin -u "$GITLAB_REGISTRY_USER"  registry.gitlab.com
-              docker push registry.gitlab.com/devops2695516/circleciproj/weatherapp:${pipeline.number}
+              docker push registry.gitlab.com/devops2695516/circleciproj/weatherapp:<< pipeline.number >>
               docker push registry.gitlab.com/devops2695516/circleciproj/weatherapp:latest
       - discord/status:
           fail_only: true
