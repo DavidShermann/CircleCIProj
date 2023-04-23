@@ -51,14 +51,14 @@ jobs:
       - run:
           name: Build and tag Docker image
           command: |
-              docker build . -t registry.gitlab.com/devops2695516/CircleCIProj/weatherapp:${IMAGE_VERSION}
-              docker tag registry.gitlab.com/devops2695516/CircleCIProj/weatherapp:${IMAGE_VERSION} registry.gitlab.com/devops2695516/CircleCIProj/weatherapp:latest
+              docker build . -t registry.gitlab.com/devops2695516/circleciproj/weatherapp:${IMAGE_VERSION}
+              docker tag registry.gitlab.com/devops2695516/circleciproj/weatherapp:${IMAGE_VERSION} registry.gitlab.com/devops2695516/circleciproj/weatherapp:latest
       - run:
           name: Push Docker image to GitLab registry
           command: |
               echo "$GITLAB_REGISTRY_PASSWORD" | docker login -u "$GITLAB_REGISTRY_USER" --password-stdin registry.gitlab.com
-              docker push registry.gitlab.com/devops2695516/CircleCIProj/weatherapp:${IMAGE_VERSION}
-              docker push registry.gitlab.com/devops2695516/CircleCIProj/weatherapp:latest
+              docker push registry.gitlab.com/devops2695516/circleciproj/weatherapp:${IMAGE_VERSION}
+              docker push registry.gitlab.com/devops2695516/circleciproj/weatherapp:latest
     
 
 workflows:
@@ -76,3 +76,8 @@ workflows:
             - discord/status:
                 fail_only: true
                 webhook: https://discord.com/api/webhooks/1041448092475588710/WTNhSyF_4-6T1FdlU1EKKkEi0Ops6OdROkv5zCSpKpsANBe3m3uAUgkW14gonjj_OSjI
+                message: "You Suck"
+            - discord/status:
+                success_only: true
+                webhook: https://discord.com/api/webhooks/1041448092475588710/WTNhSyF_4-6T1FdlU1EKKkEi0Ops6OdROkv5zCSpKpsANBe3m3uAUgkW14gonjj_OSjI
+                message: "You Rock"    
