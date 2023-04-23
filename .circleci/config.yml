@@ -30,9 +30,6 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-
-      # - python/install-packages:
-      #     pkg-manager: pip
       - run:
           name: Build Weather app
           command: docker build . -t weather
@@ -41,7 +38,7 @@ jobs:
           command: docker run -d -p 5000:5000 --name weather weather        
       - run:
           name: Run tests
-          command: docker exec weather python3 -m unittest WeatherAppTest.py
+          command: docker exec weather python3 WeatherAppTest.py
   push-to-gitlab-registry:
     docker:
       - image: docker:stable-git
