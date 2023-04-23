@@ -48,7 +48,7 @@ jobs:
     docker:
       - image: cimg/base:2021.04
     environment:
-      IMAGE_VERSION: $IMAGE_VER  
+      IMAGE_VERSION: "$IMAGE_VER"  
     steps:
       - checkout
       - setup_remote_docker
