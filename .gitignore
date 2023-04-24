@@ -9,7 +9,7 @@
 !.gitignore
 !*.sh
 !templates/
-!.html
+!*.html
 !app
 !app/charts
 !.helmignore
