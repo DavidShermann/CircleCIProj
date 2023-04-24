@@ -10,9 +10,9 @@
 !*.sh
 !templates/
 !.html
-!App
-!App/charts
+!app
+!app/charts
 !.helmignore
 !NOTES.txt
-!App/templates/tests
+!app/templates/tests
 !*.tpl

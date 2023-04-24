@@ -5,7 +5,7 @@
 replicaCount: 2
 
 image:
-  repository: registry.gitlab.com/devops2695516/circleciproj/weatherapp:${VERSION}
+  repository: registry.gitlab.com/devops2695516/circleciproj/weatherapp:latest
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
