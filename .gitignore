@@ -4,8 +4,15 @@
 !README.md
 !requirements.txt
 !*.py
-!.yml
+!*.yml
+!*.yaml
 !.gitignore
 !*.sh
 !templates/
 !.html
+!App
+!App/charts
+!.helmignore
+!NOTES.txt
+!App/templates/tests
+!*.tpl
