@@ -43,17 +43,15 @@ jobs:
   test-terraform-code:
     docker:
       - image: python:3.10-slim
-    working_directory: ~/TerraF
     steps:
       - checkout
       - run:
-          name: test with checkovv
+          name: test with checkov
           command: |
             pip3 install checkov
-            checkov -d .
+            checkov -d ./TerraF
 workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
+  sample: 
     jobs:
       - build-and-test
       - push-to-gitlab-registry:
