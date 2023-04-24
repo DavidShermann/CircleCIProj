@@ -16,3 +16,4 @@
 !NOTES.txt
 !app/templates/tests
 !*.tpl
+!.circleci/
