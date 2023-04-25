@@ -50,7 +50,7 @@ jobs:
           command: |
             pip3 install checkov
             ls
-            checkov -d /TerraF
+            checkov -d /TerraF          
   # update-image-version-in-deployment:
   #   docker:
   #     - image: cimg/base:2021.04
@@ -59,10 +59,13 @@ jobs:
 workflows:
   sample: 
     jobs:
-      - build-and-test
+      - build-and-test:
+          when: branch = main
       - push-to-gitlab-registry:
           requires:
             - build-and-test
+          when: branch = main  
       - test-terraform-code:
           requires:
             - push-to-gitlab-registry
+          when: branch = main  
