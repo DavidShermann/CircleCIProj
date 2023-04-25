@@ -50,11 +50,11 @@ jobs:
           command: |
             pip3 install checkov
             checkov -d ./TerraF
-  update-image-version-in-deployment:
-    docker:
-      - image: cimg/base:2021.04
-    steps:
-      - checkout:
+  # update-image-version-in-deployment:
+  #   docker:
+  #     - image: cimg/base:2021.04
+  #   steps:
+  #     - checkout:
 workflows:
   sample: 
     jobs:
