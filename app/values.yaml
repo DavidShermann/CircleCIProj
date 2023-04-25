@@ -5,10 +5,9 @@
 replicaCount: 2
 
 image:
-  repository: registry.gitlab.com/devops2695516/circleciproj/weatherapp:latest
+  repository: registry.gitlab.com/devops2695516/circleciproj/weatherapp
+  version: latest
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
 
 imagePullSecrets: []
 nameOverride: ""
@@ -37,7 +36,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: LoadBalancer
+  type: NodePort
   port: 80
 
 ingress:

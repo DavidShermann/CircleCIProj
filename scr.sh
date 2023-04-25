@@ -1,16 +1,9 @@
 #!/bin/bash
-nodes=$(kubectl get nodes -o 'jsonpath={.items[*].metadata.name}')
+aws eks update-kubeconfig --region us-east-1 --name my-cluster
 
-# Set space as the delimiter
-IFS=' '
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
-#Read the split words into an array based on space delimiter
-read -a nodes1 <<< "$nodes"
+kubectl port-forward svc/argocd-server -n argocd 8080:443 &
 
-length=${#nodes1[@]}
-
-node_number_to_delete=$(( $RANDOM % $length ))
-
-node_to_delete=${nodes1[$node_number_to_delete]}
-
-kubectl delete node $node_to_delete
+argocd admin initial-password -n argocd
