@@ -60,12 +60,21 @@ workflows:
   sample: 
     jobs:
       - build-and-test:
-          when: branch = main
+          filters:
+             branches:
+              only:
+                 main
       - push-to-gitlab-registry:
           requires:
             - build-and-test
-          when: branch = main  
+          filters:
+             branches:
+              only:
+                 main  
       - test-terraform-code:
           requires:
             - push-to-gitlab-registry
-          when: branch = main  
+          filters:
+             branches:
+              only:
+                 main  
