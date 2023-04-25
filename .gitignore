@@ -1,5 +1,5 @@
 *
-*.tf
+!*.tf
 !Dockerfile
 !README.md
 !requirements.txt
@@ -17,3 +17,4 @@
 !app/templates/tests
 !*.tpl
 !.circleci/
+!TerraF/
